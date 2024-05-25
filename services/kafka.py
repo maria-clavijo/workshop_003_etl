@@ -1,7 +1,8 @@
-from kafka import KafkaProducer, KafkaConsumer
 from json import dumps, loads
 import joblib
 import pandas as pd
+
+from kafka import KafkaProducer, KafkaConsumer
 from scripts.db_load_mysql import insert_data
 
 
