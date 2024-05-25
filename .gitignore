@@ -1,3 +1,3 @@
 venv
 db_config.ini
-__pycahe__/
+services/__pycache__
