@@ -1,6 +1,6 @@
 # Workshop 003 ETL
 
-# Prediction of Happiness using Kafka and Python
+## Prediction of Happiness using Kafka and Python
 
 This project aims to demonstrate how to use Kafka and Python for happiness prediction. It provides data analysis and a basic prediction model using happiness data.
 
