@@ -24,17 +24,6 @@ def add_year_column(df_list, years):
     for i, df in enumerate(df_list):
         df['year'] = years[i]
 
-def replace_outliers_with_iqr(df, multiplier=1.5):
-    numeric_cols = df.select_dtypes(include=['number'])
-    Q1 = numeric_cols.quantile(0.25)
-    Q3 = numeric_cols.quantile(0.75)
-    IQR = Q3 - Q1
-    lower_bound = Q1 - multiplier * IQR
-    upper_bound = Q3 + multiplier * IQR
-    df = df.copy()
-    for col in numeric_cols.columns:
-        df[col] = df[col].mask((df[col] < lower_bound[col]) | (df[col] > upper_bound[col]), Q1[col] + IQR[col])
-    return df
 
 def drop_columns(df, columns_to_drop):
     df.drop(columns=columns_to_drop, inplace=True)
@@ -91,7 +80,6 @@ def transform_data():
     add_year_column([df_2015, df_2016, df_2017, df_2018, df_2019], [2015, 2016, 2017, 2018, 2019])
     df_happiness = concat_datasets([df_2015, df_2016, df_2017, df_2018, df_2019])
     df_happiness.dropna(inplace=True)
-    df_happiness = replace_outliers_with_iqr(df_happiness)
     drop_columns(df_happiness, ["country", "year", "happiness_rank"])
     return df_happiness
 
